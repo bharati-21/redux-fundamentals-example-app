@@ -1,7 +1,13 @@
 import * as actions from '../actions';
+import { client } from '../../api/client';
 
 const initalState = [];
 const getTodoId = (todos) => todos.length + 1;
+
+export async function fetchTodos(dispatch, getState) {
+  const response = await client.get('/fakeApi/todos');
+  dispatch({ type: actions.LOAD_TODOS, payload: response.todos });
+}
 
 export const todosReducer = (state = initalState, action) => {
   switch (action.type) {
@@ -41,6 +47,8 @@ export const todosReducer = (state = initalState, action) => {
       return state.map((todo) => ({ ...todo, completed: true }));
     case actions.CLEAR_COMPLETED_TODOS:
       return state.map((todo) => ({ ...todo, completed: false }));
+    case actions.LOAD_TODOS:
+      return action.payload;
     default:
       return state;
   }

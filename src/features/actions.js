@@ -6,3 +6,4 @@ export const COMPLETE_TODOS = 'todos/completeTodos';
 export const CLEAR_COMPLETED_TODOS = 'todos/clearCompletedTodos';
 export const CHANGE_COLOR_FILTER = 'filters/changeColorFilter';
 export const CHANGE_FILTER_STATUS = 'filters/changeFilterStatus';
+export const LOAD_TODOS = 'todos/loadTodos';

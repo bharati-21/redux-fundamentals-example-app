@@ -5,16 +5,19 @@ import {
   sayHiOnDispatch,
 } from './exampleAddons/enhancers';
 import { print1, print2, print3 } from './exampleAddons/middleware';
+import thunkMiddleware from 'redux-thunk';
 import { statusFilers } from './features/filters/filtersSlice';
 
 const preloadedTodosState = JSON.parse(localStorage.getItem('todos'));
 
-const composeEnhancers = compose(
-  sayHiOnDispatch,
-  includeMeaningOfLife,
-  applyMiddleware(print1, print2, print3),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// const composeEnhancers = compose(
+//   sayHiOnDispatch,
+//   includeMeaningOfLife,
+//   applyMiddleware(print1, print2, print3),
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
+
+const enhancers = compose(applyMiddleware(thunkMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export const store = createStore(
   rootReducer,
@@ -25,5 +28,5 @@ export const store = createStore(
       colors: [],
     },
   },
-  composeEnhancers
+  enhancers
 );
