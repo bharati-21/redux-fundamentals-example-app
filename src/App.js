@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { Header } from './components/Header';
+import { TodoList } from './components/TodoList';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -6,7 +9,6 @@ function App() {
       <nav>
         <section>
           <h1>Redux Fundamentals Example</h1>
-
           <div className="navContent">
             <div className="navLinks"></div>
           </div>
@@ -14,9 +16,15 @@ function App() {
       </nav>
       <section>
         <h2>Welcome to the Redux Fundamentals example app!</h2>
+        <div className="todo-app">
+          <h2>Todos</h2>
+          <Header />
+          <TodoList />
+          <Footer />
+        </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
